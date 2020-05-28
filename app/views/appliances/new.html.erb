@@ -1,0 +1,23 @@
+<h1>Add all the appliances you would like to list for Rent!</h1>
+<%= form_for(@appliance) do |f| %>
+    <%= f.label :owner_id  %>
+    <%= f.collection_select :owner_id, Owner.all, :id, :username %>
+
+    <%= f.label :Appliance_Name  %>
+    <%= f.text_field :appliance_name %>
+
+    <%= f.label :category %>
+    <%= f.text_field :appliance_category %>
+
+    <%= f.label :daily_rate %>
+    <%= f.number_field :daily_rate %>
+
+    <%= f.label "Profile Photo" %>
+    <%= f.file_field :avatar %><br>
+
+
+   <%= f.submit %>
+        
+<% end %>
+  
+

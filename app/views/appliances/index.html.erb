@@ -1,0 +1,11 @@
+<h1> Appliances Available for Rent! </h1>
+
+<ol type = "1">
+<% @appliances.each do |appliance| %>
+   <li><%= link_to appliance.appliance_name, appliance %>
+   <p> $ <%= appliance.daily_rate %> per day </p> </li>
+   <% if appliance.avatar.attached? %>   
+   <image src="<%=(url_for(appliance.avatar))%>">
+   <% end %>
+   <% end %>
+</ol>

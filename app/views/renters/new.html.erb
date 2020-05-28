@@ -1,0 +1,24 @@
+
+<%= form_for(@renter) do |f| %>
+    <%= f.label :username  %>
+    <%= f.text_field :username %><br>
+
+    <%= f.label :email_address  %>
+    <%= f.text_field :email_address %><br>
+
+    <%= f.label :city  %>
+    <%= f.text_field :city %><br>
+
+    <%= f.label :address %>
+    <%= f.text_field :address %><br>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+
+   <%= f.submit %>
+    Or <%= link_to(controller: 'sessions', action: 'new') { 'login'} %>
+<% end %>
+  

@@ -1,0 +1,13 @@
+
+<%= form_tag action: "create", method: :post %>
+    <%= label_tag :username %>
+    <%= text_field_tag :username %>
+
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+
+    <%= collection_select :session, :o_r, ['owner', 'renter'], :to_s, :to_s %>
+
+<%= submit_tag "log in" %><br>
+Or <%= link_to(controller: 'renters', action: 'new') { 'Renter sign up' } %> <br>
+<%= link_to(controller: 'owners', action: 'new') { 'Owner sign up' } %><br>

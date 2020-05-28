@@ -1,0 +1,18 @@
+<h1><%= @appliance.appliance_name %></h1>
+<% if @appliance.avatar.attached? %> 
+<image src="<%=(url_for(@appliance.avatar))%>">
+<% end %>
+<ul>
+
+    <li> <p> Category: <%= @appliance.appliance_category %></p></li>
+    <li> <p> Price Per Day: <%= @appliance.daily_rate %></p></li>
+    <% if @appliance.availability == true %>
+    <%= link_to "Rent Me", new_booking_url %><br>
+    <p> Or <p>
+    <%= link_to "Back to Available Appliances", appliances_path %>
+    <% else %>
+    <%= "Unavailable for rent" %>
+    <% end %>
+</ul>
+
+

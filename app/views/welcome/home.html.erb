@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="stylesheets/welcome.scss">
+    
+    <!-- <style>
+    body {
+        background-image: url("../images/welcome/tom-rumble-7lvzopTxjOU-unsplash.jpeg");
+        background-repeat:no-repeat;
+        background-position: top;
+        background-size: cover;
+    }
+    
+    p {
+        color: #ffffff;
+        font-size: 50px;
+        text-align: center;
+    }
+    
+    h1 {
+        font-size: 70px;
+        color: white;
+        text-align: center;
+    }
+    
+    span {
+        font-weight: bold;
+    }
+    </style> -->
+
+</head>
+
+<body>
+<h1>Welcome to Good Neighbor</h1>
+
+<p>Are you a
+<span><%=link_to "Renter", new_renter_url %></span>
+or
+<span><%= link_to "Owner", new_owner_url %></span>
+?
+</p>
+
+</body>
+
+</html>

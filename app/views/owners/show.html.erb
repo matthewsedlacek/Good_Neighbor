@@ -1,0 +1,5 @@
+<h1><%= @owner.username %></h1>
+
+<% @owner.appliances.each do |a| %>
+    Appliance: <%= link_to a.appliance_name, a %>
+<% end %>

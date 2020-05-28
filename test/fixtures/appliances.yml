@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner_id: 1
+  appliance_name: MyString
+  appliance_category: MyString
+  daily_rate: 1.5
+  availability: false
+
+two:
+  owner_id: 1
+  appliance_name: MyString
+  appliance_category: MyString
+  daily_rate: 1.5
+  availability: false
