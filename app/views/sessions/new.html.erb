@@ -1,13 +1,14 @@
 
-<%= form_tag action: "create", method: :post %>
-    <%= label_tag :username %>
-    <%= text_field_tag :username %>
+<%= form_with url: '/login', method: :post, local: true do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username, name: :username %>
 
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+    <%= f.label :password %>
+    <%= f.password_field :password, name: :password %>
 
     <%= collection_select :session, :o_r, ['owner', 'renter'], :to_s, :to_s %>
 
-<%= submit_tag "log in" %><br>
-Or <%= link_to(controller: 'renters', action: 'new') { 'Renter sign up' } %> <br>
-<%= link_to(controller: 'owners', action: 'new') { 'Owner sign up' } %><br>
+    <%= f.submit "log in" %>
+<% end %><br>
+Or <%= link_to 'Renter sign up', controller: 'renters', action: 'new' %> <br>
+<%= link_to 'Owner sign up', controller: 'owners', action: 'new' %><br>

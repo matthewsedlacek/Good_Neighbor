@@ -1,12 +1,13 @@
 class BookingsController < ApplicationController
+    before_action :require_login
+
     def new
         @booking = Booking.new
     end
 
     def create
-        renter_id = session[:renter_id]
         appliance_id = params[:booking][:appliance_id].to_i
-        @booking = Booking.new(renter_id: renter_id, appliance_id: appliance_id)
+        @booking = Booking.new(renter_id: session[:renter_id], appliance_id: appliance_id)
         if @booking.save
             redirect_to appliances_path
         else
@@ -16,8 +17,10 @@ class BookingsController < ApplicationController
     end
 
     def destroy
-        Booking.find(params[:id]).destroy
-        redirect_to new_booking
+        booking = Booking.find(params[:id])
+        return redirect_to root_path unless booking.renter_id == session[:renter_id]
+        booking.destroy
+        redirect_to appliances_path
     end
 
     private

@@ -1,4 +1,5 @@
 class OwnersController < ApplicationController
+    before_action :require_login, only: [:edit, :update, :destroy]
 
     def show
         @owner = Owner.find(params[:id])
@@ -8,35 +9,30 @@ class OwnersController < ApplicationController
         @owner = Owner.new
     end
 
-    #old
-    # def create
-    #     @owner = Owner.create(renter_params)
-    #     return redirect_to controller: 'owners', action: 'new' unless @owner.save
-    #     session[:owner_id] = @owner.id
-    #     redirect_to appliances_url
-    #     end
-    # end
-
     def create
-        @user = Owner.create(owner_params)
-        return redirect_to controller: 'owner', action: 'new' unless @user.save
+        @user = Owner.new(owner_params)
+        return redirect_to controller: 'owners', action: 'new' unless @user.save
         session[:owner_id] = @user.id
-        redirect_to owner_path
+        redirect_to owner_path(@user)
     end
 
     def edit
         @owner = Owner.find(params[:id])
+        return redirect_to root_path unless @owner == @user
     end
 
     def update
         @owner = Owner.find(params[:id])
+        return redirect_to root_path unless @owner == @user
         @owner.update(owner_params)
         redirect_to @owner
     end
 
     def destroy
-        Owner.find(params[:id]).destroy
-        redirect_to new_owner
+        owner = Owner.find(params[:id])
+        return redirect_to root_path unless owner == @user
+        owner.destroy
+        redirect_to new_owner_path
     end
 
     private
