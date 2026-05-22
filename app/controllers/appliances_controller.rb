@@ -1,4 +1,5 @@
 class AppliancesController < ApplicationController
+    before_action :require_login, only: [:new, :create, :destroy]
 
     def index
         @appliances = Appliance.where(availability: true)
@@ -13,7 +14,6 @@ class AppliancesController < ApplicationController
     end
 
     def create
-        renter_id = session[:owner_id]
         @appliance = Appliance.new(appliance_params)
         if @appliance.save
             redirect_to @appliance
@@ -23,10 +23,11 @@ class AppliancesController < ApplicationController
         end
     end
 
-    
     def destroy
-            Owner.find(params[:id]).destroy
-            redirect_to @owners
+        appliance = Appliance.find(params[:id])
+        return redirect_to root_path unless appliance.owner_id == session[:owner_id]
+        appliance.destroy
+        redirect_to appliances_path
     end
 
     private
@@ -35,6 +36,4 @@ class AppliancesController < ApplicationController
         params.require(:appliance).permit(:owner_id, :appliance_name, :appliance_category, :daily_rate, :availability, :avatar)
     end
 
-
-   
 end

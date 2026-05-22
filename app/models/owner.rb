@@ -4,7 +4,6 @@ class Owner < ApplicationRecord
     has_many :bookings, through: :appliances
 
     validates :username, uniqueness: true
-    validates :username, length: { in: 6.. 20 }
-    validates :password, uniqueness: true
-    validates :password_digest, length: { in: 6..20 }
+    validates :username, length: { in: 6..20 }
+    validates :password, length: { in: 6..20 }, on: :create
 end
